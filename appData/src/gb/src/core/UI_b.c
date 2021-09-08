@@ -154,7 +154,7 @@ void UIShowText_b() __banked {
   src = tmp_text_lines + 1, dest = text_lines;
   for (i = 0; (*src) && (i != 80u); i++) {
     switch (*src) {
-      case '$':
+      case '$': // Displaying variable as number "$84$" => "43"
         l = GetToken_b(src + 1, '$', &var_index);
         if (l) {
           dest += strlen(itoa(script_variables[var_index], dest));
@@ -163,7 +163,7 @@ void UIShowText_b() __banked {
         }
         break;
 
-      case '#':
+      case '#': // Displaying variable as ascii character "#84#" => "B"
         l = GetToken_b(src + 1, '#', &var_index);
         if (l) {
           *dest++ = script_variables[var_index] + 0x20u; 
@@ -172,7 +172,7 @@ void UIShowText_b() __banked {
         }
         break;
 
-      case '!':
+      case '!': // Dynamic text speed "!S4!"
         if (*(src+1) == 'S') {
           l = GetToken_b(src + 2, '!', &var_index);
           if (l) {
