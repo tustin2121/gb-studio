@@ -53,7 +53,6 @@ export const NavigatorVariables: FC<NavigatorVariablesProps> = ({ height }) => {
     setItems(
       allVariables
         .map((value) => variableToNavigatorItem(variablesLookup[value], value))
-        .sort(sortByName)
     );
   }, [variablesLookup]);
 
